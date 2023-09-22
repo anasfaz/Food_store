@@ -16,7 +16,8 @@ const Header = () => {
             <li>About as</li>
             <li>Cart</li>
           </ul>
-        </div>
+            </div>
+            {console.log('headers--------------')}
       </div>
     );
 };
