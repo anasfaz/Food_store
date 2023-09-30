@@ -5,6 +5,7 @@ const styleCard = {
 };
 
 const RestaurantCard = (props) => {
+  console.log('card ui');
   const { resData } = props;
   const {
     name,
