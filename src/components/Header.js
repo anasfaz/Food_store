@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LOGO_URL } from "../utils/constant";
 const Header = () => {
-  const [btnName,setBtnName]=useState('Login')
+  const [btnName, setBtnName] = useState('Login')
+  useEffect(() => {
+    console.log('called after ui rendering');
+  },[btnName])
   const loginChange = () => {
     if (btnName == 'Login') {
       setBtnName('Logout')
