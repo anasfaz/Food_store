@@ -1,7 +1,7 @@
 {
-  "name": "namaste-react",
+  "name": "Namaste-React",
   "version": "1.0.0",
-  "description": "lerning ract",
+  "description": "leaning React",
   "main": "App.js",
   "scripts": {
     "start": "parcel index.html",
@@ -13,7 +13,8 @@
   "dependencies": {
     "parcel": "^2.9.2",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.16.0"
   },
   "devDependencies": {
     "process": "^0.11.10"
