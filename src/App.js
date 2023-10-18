@@ -7,6 +7,7 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import { RouterProvider, createBrowserRouter,Outlet } from "react-router-dom";
 import Error from "./components/Error";
+import RestaurantMenu from "./components/RestaurantMenu";
 
 // const resData = {
 //   id: "536136",
@@ -101,6 +102,10 @@ const appRouter = createBrowserRouter([
         path: "/contact",
         element: <Contact />,
       },
+      {
+        path: "/restaurants/:resId",
+        element:<RestaurantMenu />
+      }
     ],
     errorElement: <Error />,
   },

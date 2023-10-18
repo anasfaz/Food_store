@@ -67,3 +67,9 @@
 .filter {
   display: flex;
 }
+
+.user-card{
+  padding: 10px;
+  border: solid 1px burlywood;
+  margin: 5px;
+}

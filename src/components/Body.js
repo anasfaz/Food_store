@@ -1,11 +1,12 @@
 import RestaurantCard from "./ResturantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 const Body = () => {
   console.log("render UI");
   //Local  state Variable by react - Super powered variable
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
-  const [filtered,setFiltered]=useState([])
+  const [filtered, setFiltered] = useState([]);
   const [searchText, SetSearchText] = useState("");
 
   useEffect(() => {
@@ -26,7 +27,9 @@ const Body = () => {
     setListOfRestaurants(
       data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
-    setFiltered( data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+    setFiltered(
+      data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
   };
   if (listOfRestaurants.length === 0) {
     return <Shimmer />;
@@ -48,7 +51,7 @@ const Body = () => {
               const filteredRes = listOfRestaurants.filter((res) =>
                 res.info.name.toLowerCase().includes(searchText.toLowerCase())
               );
-              setFiltered(filteredRes)
+              setFiltered(filteredRes);
             }}
           >
             Search
@@ -72,7 +75,12 @@ const Body = () => {
       <div className="res-container">
         {filtered.map((restaurant) => {
           return (
-            <RestaurantCard key={restaurant.info.id} resData={restaurant} />
+            <Link
+              key={restaurant.info.id}
+              to={"/restaurants/" + restaurant.info.id}
+            >
+              <RestaurantCard resData={restaurant} />
+            </Link>
           );
         })}
       </div>

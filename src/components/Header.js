@@ -1,18 +1,19 @@
 import { useEffect, useState } from "react";
 import { LOGO_URL } from "../utils/constant";
+import { Link } from "react-router-dom";
 const Header = () => {
-  const [btnName, setBtnName] = useState('Login')
+  const [btnName, setBtnName] = useState("Login");
   useEffect(() => {
-    console.log('called after ui rendering');
-  },[btnName])
+    console.log("called after ui rendering");
+  }, [btnName]);
   const loginChange = () => {
-    if (btnName == 'Login') {
-      setBtnName('Logout')
-    } else if (btnName == 'Logout') {
-      setBtnName('Login')
+    if (btnName == "Login") {
+      setBtnName("Logout");
+    } else if (btnName == "Logout") {
+      setBtnName("Login");
     }
-    console.log(btnName,'log');
-  }
+    console.log(btnName, "log");
+  };
   return (
     <div className="header">
       <div>
@@ -20,11 +21,20 @@ const Header = () => {
       </div>
       <div className="nav-items">
         <ul>
-          <li>home</li>
-          <li>contact</li>
-          <li>About as</li>
+          <li>
+            <Link to="/">home</Link> 
+          </li>
+          <li>
+            <Link to="/contact">contact</Link>
+          </li>
+          <li>
+            
+            <Link to="/about">About as </Link>
+          </li>
           <li>Cart</li>
-          <button className="login-btn" onClick={loginChange}>{btnName}</button>
+          <button className="login-btn" onClick={loginChange}>
+            {btnName}
+          </button>
         </ul>
       </div>
       {console.log("headers--------------")}
