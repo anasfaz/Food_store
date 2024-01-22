@@ -1,14 +1,15 @@
-import React, { Children } from "react";
+import React, { Children, Suspense, lazy } from "react";
 import ReactDOM from "react-dom/client";
 import "../index.css";
 import Header from "./components/Header";
 import Body from "./components/Body";
-import About from "./components/About";
+// import About from "./components/About";
 import Contact from "./components/Contact";
-import { RouterProvider, createBrowserRouter,Outlet } from "react-router-dom";
+import { RouterProvider, createBrowserRouter, Outlet } from "react-router-dom";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 
+const About = lazy(() => import("./components/About"));
 // const resData = {
 //   id: "536136",
 //   name: "Planet Cafe",
@@ -80,7 +81,7 @@ const AppLayout = () => {
   return (
     <div className="App">
       <Header />
-      <Outlet/>
+      <Outlet />
     </div>
   );
 };
@@ -91,12 +92,16 @@ const appRouter = createBrowserRouter([
     element: <AppLayout />,
     children: [
       {
-        path: '/',
-        element:<Body/>
+        path: "/",
+        element: <Body />,
       },
       {
         path: "/about",
-        element: <About />,
+        element: (
+          <Suspense fallback={<h1>Loading.......</h1>}>
+            <About />
+          </Suspense>
+        ),
       },
       {
         path: "/contact",
@@ -104,8 +109,8 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/restaurants/:resId",
-        element:<RestaurantMenu />
-      }
+        element: <RestaurantMenu />,
+      },
     ],
     errorElement: <Error />,
   },

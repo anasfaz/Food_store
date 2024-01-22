@@ -2,13 +2,15 @@ import RestaurantCard from "./ResturantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
+import CategoryCarousal from "./CategoryCarousal";
 const Body = () => {
   console.log("render UI");
   //Local  state Variable by react - Super powered variable
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filtered, setFiltered] = useState([]);
   const [searchText, SetSearchText] = useState("");
-
+  const onlineStatus = useOnlineStatus();
   useEffect(() => {
     fetchData();
   }, []);
@@ -25,18 +27,23 @@ const Body = () => {
 
     console.log(data, "json");
     setListOfRestaurants(
-      data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
     setFiltered(
-      data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
+
+  if (onlineStatus === false) {
+    return <h1>Your internet connection lost please check.......</h1>;
+  }
+
   if (listOfRestaurants.length === 0) {
     return <Shimmer />;
   }
   return (
     <div className="body">
-      <div className="filter">
+      {/* <div className="filter">
         <div className="search">
           <input
             type="text"
@@ -71,7 +78,11 @@ const Body = () => {
         >
           Top Rated Restaurants
         </button>
+      </div> */}
+      <div className="">
+      <CategoryCarousal />
       </div>
+      
       <div className="res-container">
         {filtered.map((restaurant) => {
           return (
