@@ -9,6 +9,7 @@ const Body = () => {
   //Local  state Variable by react - Super powered variable
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filtered, setFiltered] = useState([]);
+  const [categoryImage,setCategoryImage]=useState([])
   const [searchText, SetSearchText] = useState("");
   const onlineStatus = useOnlineStatus();
   useEffect(() => {
@@ -32,6 +33,9 @@ const Body = () => {
     setFiltered(
       data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
+    setCategoryImage(
+      data?.cards[0]?.card?.card?.imageGridCards?.info
+    )
   };
 
   if (onlineStatus === false) {
@@ -43,6 +47,7 @@ const Body = () => {
   }
   return (
     <div className="body">
+      
       {/* <div className="filter">
         <div className="search">
           <input
@@ -79,8 +84,10 @@ const Body = () => {
           Top Rated Restaurants
         </button>
       </div> */}
+
+
       <div className="">
-      <CategoryCarousal />
+      <CategoryCarousal ImageData={categoryImage} />
       </div>
       
       <div className="res-container">
