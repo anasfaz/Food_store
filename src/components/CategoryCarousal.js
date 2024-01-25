@@ -47,7 +47,7 @@ function CategoryCarousal(props) {
         >
           {ImageData.map((image) => {
             const { id, imageId } = image;
-            console.log(id, imageId);
+            
             return (
               <img
                 key={id}
