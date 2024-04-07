@@ -9,9 +9,10 @@ const Body = () => {
   //Local  state Variable by react - Super powered variable
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filtered, setFiltered] = useState([]);
-  const [categoryImage,setCategoryImage]=useState([])
+  const [categoryImage, setCategoryImage] = useState([]);
   const [searchText, SetSearchText] = useState("");
   const onlineStatus = useOnlineStatus();
+  console.log(listOfRestaurants,'list of restaurants');
   useEffect(() => {
     fetchData();
   }, []);
@@ -33,21 +34,21 @@ const Body = () => {
     setFiltered(
       data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
-    setCategoryImage(
-      data?.cards[0]?.card?.card?.imageGridCards?.info
-    )
+    setCategoryImage(data?.cards[0]?.card?.card?.imageGridCards?.info);
   };
 
   if (onlineStatus === false) {
     return <h1>Your internet connection lost please check.......</h1>;
   }
 
-  if (listOfRestaurants.length === 0) {
+  if (!listOfRestaurants || listOfRestaurants?.length === 0) {
     return <Shimmer />;
   }
   return (
     <div className="body">
-      
+      <div className="">
+        <CategoryCarousal ImageData={categoryImage} />
+      </div>
       <div className="filter flex">
         <div className="search m-4 p-4">
           <input
@@ -58,7 +59,9 @@ const Body = () => {
               SetSearchText(e.target.value);
             }}
           />
-          <button className="px-4 py-2 bg-green-100 m-4"
+          <button
+            className="px-4 py-2 bg-green-100 m-4 rounded-md
+            "
             onClick={() => {
               const filteredRes = listOfRestaurants.filter((res) =>
                 res.info.name.toLowerCase().includes(searchText.toLowerCase())
@@ -69,8 +72,9 @@ const Body = () => {
             Search
           </button>
         </div>
+        <div className=" m-4 p-4 flex items-center ">
         <button
-          className="filter-btn"
+          className="px-4 py-2 filter-btn rounded-md bg-gray-100"
           onClick={() => {
             //Filter Logic here
             setListOfRestaurants();
@@ -83,14 +87,12 @@ const Body = () => {
         >
           Top Rated Restaurants
         </button>
+        </div>
+        
       </div>
 
-
-      <div className="">
-      <CategoryCarousal ImageData={categoryImage} />
-      </div>
-      
-      <div className="res-container">
+      <div className="mx-[calc(10%+30px)]  ">
+        <div className="grid grid-cols-[repeat(4,1fr)] gap-5 mx-4 my-8 p-0">
         {filtered.map((restaurant) => {
           return (
             <Link
@@ -101,6 +103,10 @@ const Body = () => {
             </Link>
           );
         })}
+        </div>
+        
+       
+        
       </div>
     </div>
   );

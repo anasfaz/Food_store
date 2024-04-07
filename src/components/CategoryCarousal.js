@@ -10,7 +10,7 @@ function CategoryCarousal(props) {
 
   return (
     <>
-      <div className="mx-[calc(10%+34px)] p-5">
+      <div className="mx-[calc(10%+32px)] p-5">
         <div
           className="m-1 w-full flex justify-between
                         overflow-hidden relative "
