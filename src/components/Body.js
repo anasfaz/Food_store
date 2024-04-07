@@ -92,7 +92,7 @@ const Body = () => {
       </div>
 
       <div className="mx-[calc(10%+30px)]  ">
-        <div className="grid grid-cols-[repeat(4,1fr)] gap-5 mx-4 my-8 p-0">
+        <div className="grid grid-cols-[repeat(4,1fr)]  gap-5 mx-4 my-8 p-0">
         {filtered.map((restaurant) => {
           return (
             <Link

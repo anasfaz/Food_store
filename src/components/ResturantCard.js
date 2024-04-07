@@ -1,8 +1,6 @@
 import { CDN_URL } from "../utils/constant";
 
-// const styleCard = {
-//   backgroundColor: "#ffff",
-// };
+
 
 const RestaurantCard = (props) => {
   console.log("card ui");
@@ -16,26 +14,7 @@ const RestaurantCard = (props) => {
     sla,
     costForTwo,
   } = resData?.info;
-//   sla
-// : 
-// deliveryTime
-// : 
-// 23
-// iconType
-// : 
-// "ICON_TYPE_EMPTY"
-// lastMileTravel
-// : 
-// 1
-// lastMileTravelString
-// : 
-// "1.0 km"
-// serviceability
-// : 
-// "SERVICEABLE"
-// slaString
-// : 
-// "20-25 mins"
+
   console.log(resData,'redData');
   console.log(cuisines);
   return (

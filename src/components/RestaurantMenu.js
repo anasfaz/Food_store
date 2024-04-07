@@ -27,7 +27,7 @@ const RestaurantMenu = () => {
   console.log(categories, "categories");
   // console.info(itemCards,'itemcard');
   return (
-    <div className="mx-[calc(20%+50px)] menu">
+    <div className="mx-[calc(10%+50px)] menu">
       <div className="pt-5 ">
         <h1 className="text-lg font-bold">{name}</h1>
       </div>
@@ -42,18 +42,9 @@ const RestaurantMenu = () => {
       <div>
         <hr className="my-4" />
       {categories.map((category) => (
-        <RestaurantCategory data={ category?.card?.card} />
+        <RestaurantCategory key={category.card.card.title} data={ category?.card?.card} />
       ))}
       </div>
-      
-      {/* <ul>
-        {itemCards.map((item) => (
-          <li key={item.card.info.id}>
-            {item.card.info.name} -{"RS:"}{" "}
-            {item.card.info.price / 100 || item.card.info.defaultPrice / 100}
-          </li>
-        ))}
-      </ul> */}
     </div>
   );
 };
