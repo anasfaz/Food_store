@@ -1,12 +1,15 @@
 import React from "react";
 import { CDN_URL } from "../utils/constant";
-// function ItemList() {
-//   return (
-//     <div>ItemList</div>
-//   )
-// }
+
+import { useDispatch } from "react-redux";
+import { addItem } from "../utils/cartSlice";
 const ItemList = ({ items }) => {
-  console.log(items, "items");
+  //console.log(items, "items");
+  const dispatch = useDispatch();
+
+  const handleAddCart = (item) => {
+    dispatch(addItem(item));
+  };
   return (
     <div className="px-6 pt-0 overflow-hidden   ">
       {items.map((item) => (
@@ -45,7 +48,10 @@ const ItemList = ({ items }) => {
           </div>
 
           <div className=" flex justify-center ">
-            <button className="p-2 bg-white border-green-500 border-2 text-green-600 rounded-md  w-32 absolute mt-28 ">
+            <button
+              onClick={()=>handleAddCart(item)}
+              className="p-2 bg-white border-green-500 border-2 text-green-600 rounded-md  w-32 absolute mt-28 "
+            >
               Add +
             </button>
             <img

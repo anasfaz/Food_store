@@ -8,7 +8,8 @@ import Contact from "./components/Contact";
 import { RouterProvider, createBrowserRouter, Outlet } from "react-router-dom";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
-
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore"
 const About = lazy(() => import("./components/About"));
 // const resData = {
 //   id: "536136",
@@ -79,10 +80,12 @@ const About = lazy(() => import("./components/About"));
 
 const AppLayout = () => {
   return (
-    <div className="App">
-      <Header />
-      <Outlet />
-    </div>
+    <Provider store={appStore}>
+      <div className="App">
+        <Header />
+        <Outlet />
+      </div>
+    </Provider>
   );
 };
 

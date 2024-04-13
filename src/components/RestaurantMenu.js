@@ -7,43 +7,59 @@ import RestaurantCategory from "./RestaurantCategory";
 const RestaurantMenu = () => {
   const { resId } = useParams();
   const resInfo = useRestaurantMenu(resId);
+  const [showItemIndexes, setShowItemIndexes] = useState([]);
+
+
   if (resInfo === null) {
     return <Shimmer />;
   }
-  console.log(resInfo, "res");
+  console.log(showItemIndexes, "res");
   const { name, cuisines, costForTwoMessage } =
     resInfo?.cards[2]?.card?.card?.info;
-  
+  console.log(showItemIndexes, "index");
   // const { itemCards } =
   //   resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
-  console.log(resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR, "name");
+
+
   const categories =
     resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
       (c) =>
         c.card?.card?.["@type"] ===
         "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
     );
-
-  console.log(categories, "categories");
-  // console.info(itemCards,'itemcard');
+  //  refactor later array :index key change to card title is the key 
+  if (showItemIndexes.length === 0 && categories.length > 0) {
+    const initialShowItemIndices = Array(categories.length).fill(true);
+    setShowItemIndexes(initialShowItemIndices);
+  }
+  const toggleCategory = (index) => {
+    const updatedShowItemIndices = [...showItemIndexes];
+    updatedShowItemIndices[index] = !updatedShowItemIndices[index];
+    setShowItemIndexes(updatedShowItemIndices);
+  };
   return (
     <div className="mx-[calc(10%+50px)] menu">
       <div className="pt-5 ">
         <h1 className="text-lg font-bold">{name}</h1>
       </div>
-      {/* card resturant */}
+      {/* card restaurant */}
       <div>
         <div></div>
       </div>
-      <h4>{cuisines}</h4>
-      <h3>{costForTwoMessage}</h3>
+      <h4 className="text-sm font-semibold py-1">{cuisines}</h4>
+      <h3 className="text-sm font-semibold py-1">{costForTwoMessage}</h3>
       <h2>Menu</h2>
 
       <div>
         <hr className="my-4" />
-      {categories.map((category) => (
-        <RestaurantCategory key={category.card.card.title} data={ category?.card?.card} />
-      ))}
+        {categories.map((category, index) => (
+          <RestaurantCategory
+            key={category.card.card.title}
+            data={category?.card?.card}
+            showItem={showItemIndexes[index]}
+            setItemsIndex={() => toggleCategory(index)}
+          />
+        ))}
       </div>
     </div>
   );

@@ -2,9 +2,14 @@ import { useEffect, useState } from "react";
 import { LOGO_URL } from "../utils/constant";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import { useSelector } from "react-redux";
+
 const Header = () => {
   const [btnName, setBtnName] = useState("Login");
   const onlineStatus = useOnlineStatus();
+
+  const cartItems=useSelector((store)=>store.cart.items)
+console.log(cartItems,'cart');
   useEffect(() => {
     console.log("called after ui rendering");
   }, [btnName]);
@@ -16,6 +21,7 @@ const Header = () => {
     }
     console.log(btnName, "log");
   };
+
   return (
     <header>
       <div className="flex items-center justify-between h-20 shadow-sm">
@@ -117,7 +123,7 @@ const Header = () => {
             </svg>
                   
                 </span>
-                <span className="text-lg font-medium text-[#3d4152] group-hover:text-orange-500"> Cart</span>
+                <span className="text-lg font-medium text-[#3d4152] group-hover:text-orange-500"> Cart-({cartItems.length} items)</span>
                
               </Link>
             </li>
