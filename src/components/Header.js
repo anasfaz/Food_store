@@ -9,9 +9,8 @@ const Header = () => {
   const onlineStatus = useOnlineStatus();
 
   const cartItems=useSelector((store)=>store.cart.items)
-console.log(cartItems,'cart');
   useEffect(() => {
-    console.log("called after ui rendering");
+   
   }, [btnName]);
   const loginChange = () => {
     if (btnName == "Login") {
@@ -129,7 +128,7 @@ console.log(cartItems,'cart');
             </li>
           </ul>
         </div>
-        {console.log("headers--------------")}
+       
       </div>
     </header>
   );
