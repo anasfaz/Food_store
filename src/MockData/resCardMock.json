@@ -1,0 +1,82 @@
+{
+    "info": {
+        "id": "472537",
+        "name": "Hive Honey Cake",
+        "cloudinaryImageId": "zvytdpf3l8bimlo3njdz",
+        "locality": "Manorama Cross Road",
+        "areaName": "Bilathikkulam",
+        "costForTwo": "₹200 for two",
+        "cuisines": [
+            "Bakery"
+        ],
+        "avgRating": 4.8,
+        "parentId": "270110",
+        "avgRatingString": "4.8",
+        "totalRatingsString": "500+",
+        "sla": {
+            "deliveryTime": 29,
+            "lastMileTravel": 1.5,
+            "serviceability": "SERVICEABLE",
+            "slaString": "25-30 mins",
+            "lastMileTravelString": "1.5 km",
+            "iconType": "ICON_TYPE_EMPTY"
+        },
+        "availability": {
+            "nextCloseTime": "2024-04-17 21:00:00",
+            "opened": true
+        },
+        "badges": {
+            "imageBadges": [
+                {
+                    "imageId": "Rxawards/_CATEGORY-Desserts.png",
+                    "description": "Delivery!"
+                }
+            ]
+        },
+        "isOpen": true,
+        "aggregatedDiscountInfoV2": {},
+        "type": "F",
+        "badgesV2": {
+            "entityBadges": {
+                "imageBased": {
+                    "badgeObject": [
+                        {
+                            "attributes": {
+                                "description": "Delivery!",
+                                "imageId": "Rxawards/_CATEGORY-Desserts.png"
+                            }
+                        }
+                    ]
+                },
+                "textBased": {},
+                "textExtendedBadges": {}
+            }
+        },
+        "orderabilityCommunication": {
+            "title": {},
+            "subTitle": {},
+            "message": {},
+            "customIcon": {}
+        },
+        "differentiatedUi": {
+            "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+            "differentiatedUiMediaDetails": {
+                "mediaType": "ADS_MEDIA_ENUM_IMAGE",
+                "lottie": {},
+                "video": {}
+            }
+        },
+        "reviewsSummary": {},
+        "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+        "restaurantOfferPresentationInfo": {}
+    },
+    "analytics": {
+        "context": "seo-data-086e6bf4-66ce-45fb-8473-2aedb2ae4ff6"
+    },
+    "cta": {
+        "link": "https://www.swiggy.com/restaurants/hive-honey-cake-manorama-cross-road-bilathikkulam-kozhikode-472537",
+        "text": "RESTAURANT_MENU",
+        "type": "WEBLINK"
+    },
+    "widgetId": "collectionV5RestaurantListWidget_SimRestoRelevance_food_seo"
+}
