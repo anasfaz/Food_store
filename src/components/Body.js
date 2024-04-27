@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import CategoryCarousal from "./CategoryCarousal";
 const Body = () => {
-  console.log("render UI");
+
   //Local  state Variable by react - Super powered variable
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filtered, setFiltered] = useState([]);
@@ -49,11 +49,11 @@ const Body = () => {
       <div className="">
         <CategoryCarousal ImageData={categoryImage} />
       </div>
-      <div className="filter flex">
+      <div className="filter flex justify-center">
         <div className="search m-4 p-4">
           <input
             type="text"
-            className="search-box border-solid border-black"
+            className="search-box border-2 rounded-lg p-2  border-green-300"
             value={searchText}
             onChange={(e) => {
               SetSearchText(e.target.value);
@@ -74,15 +74,14 @@ const Body = () => {
         </div>
         <div className=" m-4 p-4 flex items-center ">
         <button
-          className="px-4 py-2 filter-btn rounded-md bg-gray-100"
+          className="px-4 py-2 filter-btn rounded-md bg-orange-300"
           onClick={() => {
             //Filter Logic here
-            setListOfRestaurants();
-
             const filteredList = listOfRestaurants.filter((res) => {
-              return res.info.avgRating > 4;
+              return res.info.avgRating > 4.1;
             });
-            setListOfRestaurants(filteredList);
+            console.log(filteredList)
+            setFiltered(filteredList);
           }}
         >
           Top Rated Restaurants

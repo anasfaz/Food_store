@@ -2,12 +2,12 @@ import { CDN_URL } from "../utils/constant";
 
 const RestaurantCard = (props) => {
   const { resData } = props;
-  console.log(resData, "card ui");
+  // console.log(resData, "card ui");
   const { name, cloudinaryImageId, cuisines, avgRating, sla, costForTwo } =
     resData?.info;
 
-  console.log(resData, "redData");
-  console.log(cuisines);
+  // console.log(resData, "redData");
+  // console.log(cuisines);
   return (
     <div className="">
       <div className="h-[182px] w-[273px]">
@@ -30,8 +30,8 @@ const RestaurantCard = (props) => {
               fill="none"
               role="img"
               aria-hidden="true"
-              strokeColor="rgba(2, 6, 12, 0.92)"
-              fillColor="rgba(2, 6, 12, 0.92)"
+              // strokeColor="rgba(2, 6, 12, 0.92)"
+              // fillColor="rgba(2, 6, 12, 0.92)"
             >
               <circle
                 cx="10"

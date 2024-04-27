@@ -5,7 +5,7 @@ import { CDN_URL, CDN_URL_CATEGORY } from "../utils/constant";
 function CategoryCarousal(props) {
   const sliderRef = useRef(null);
   const scrollAmount = 500;
-  console.log(props, "categoryImage");
+
   const { ImageData } = props;
 
   return (
