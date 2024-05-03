@@ -14,9 +14,13 @@ const Body = () => {
   const onlineStatus = useOnlineStatus();
   console.log(listOfRestaurants,'list of restaurants');
   useEffect(() => {
-    fetchData();
+    setTimeout(() => {
+      fetchData();
+    },50000)
+    
   }, []);
-
+ 
+ 
   // mobile width api call url "https://www.swiggy.com/mapi/homepage/getCards?lat=10.7837491&lng=76.0076374"
   // web width api "https://www.swiggy.com/dapi/restaurants/list/v5?lat=10.7837491&lng=76.0076374&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
   const fetchData = async () => {
