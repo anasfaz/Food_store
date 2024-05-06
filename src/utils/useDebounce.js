@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 
 const useDebounce = (inputValue, delay) => {
-    const [debounceValue, setDebounceValue] = useState()
+    const [debounceValue, setDebounceValue] = useState('')
 
     useEffect(() => {
       

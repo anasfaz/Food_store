@@ -12,6 +12,7 @@ import { Provider } from "react-redux";
 import appStore from "./utils/appStore"
 import Cart from "./components/Cart";
 import Search from "./components/Search";
+
 const About = lazy(() => import("./components/About"));
 // const resData = {
 //   id: "536136",
@@ -102,7 +103,9 @@ const appRouter = createBrowserRouter([
       },
       {
         path: '/search',
-        element:<Search/>
+        element: <Search />,
+        
+        
       },
       {
         path: "/about",

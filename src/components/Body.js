@@ -1,26 +1,21 @@
 import RestaurantCard from "./RestaurantCard";
-import { useState, useEffect } from "react";
+import { useState, useEffect,useRef } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import CategoryCarousal from "./CategoryCarousal";
+import useOnScreen from "../utils/useOnScreen";
 const Body = () => {
-
   //Local  state Variable by react - Super powered variable
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filtered, setFiltered] = useState([]);
   const [categoryImage, setCategoryImage] = useState([]);
   const [searchText, SetSearchText] = useState("");
   const onlineStatus = useOnlineStatus();
-  console.log(listOfRestaurants,'list of restaurants');
   useEffect(() => {
-    setTimeout(() => {
-      fetchData();
-    },50000)
-    
+    fetchData();
   }, []);
- 
- 
+
   // mobile width api call url "https://www.swiggy.com/mapi/homepage/getCards?lat=10.7837491&lng=76.0076374"
   // web width api "https://www.swiggy.com/dapi/restaurants/list/v5?lat=10.7837491&lng=76.0076374&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
   const fetchData = async () => {
@@ -71,45 +66,43 @@ const Body = () => {
                 res.info.name.toLowerCase().includes(searchText.toLowerCase())
               );
               setFiltered(filteredRes);
+
             }}
           >
             Search
           </button>
         </div>
         <div className=" m-4 p-4 flex items-center ">
-        <button
-          className="px-4 py-2 filter-btn rounded-md bg-orange-300"
-          onClick={() => {
-            //Filter Logic here
-            const filteredList = listOfRestaurants.filter((res) => {
-              return res.info.avgRating > 4.1;
-            });
-            console.log(filteredList)
-            setFiltered(filteredList);
-          }}
-        >
-          Top Rated Restaurants
-        </button>
+          <button
+            className="px-4 py-2 filter-btn rounded-md bg-orange-300"
+            onClick={() => {
+              //Filter Logic here
+              const filteredList = listOfRestaurants.filter((res) => {
+                return res.info.avgRating > 4.1;
+              });
+              console.log(filteredList);
+              setFiltered(filteredList);
+            }}
+          >
+            Top Rated Restaurants
+          </button>
         </div>
-        
       </div>
 
       <div className="mx-[calc(10%+30px)]  ">
         <div className="grid grid-cols-[repeat(4,1fr)]  gap-5 mx-4 my-8 p-0">
-        {filtered.map((restaurant) => {
-          return (
-            <Link
-              key={restaurant.info.id}
-              to={"/restaurants/" + restaurant.info.id}
-            >
-              <RestaurantCard resData={restaurant} />
-            </Link>
-          );
-        })}
+          {filtered.map((restaurant, index) => {
+          
+            return (
+              <Link
+                key={restaurant.info.id}
+                to={"/restaurants/" + restaurant.info.id}
+              >
+                <RestaurantCard  resData={restaurant}  />
+              </Link>
+            );
+          })}
         </div>
-        
-       
-        
       </div>
     </div>
   );
