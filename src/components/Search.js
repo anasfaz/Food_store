@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import useDebounce from "../utils/useDebounce";
 import { Link, Outlet, useSearchParams } from "react-router-dom";
 import ItemList from "./ItemList";
+import { SearchItemList } from "./SearchItemList";
 const imageUrl =
   "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_112,h_112,c_fill/";
 const Search = () => {
@@ -10,9 +11,10 @@ const Search = () => {
   const debouncedValue = useDebounce(searchQuery, 1000);
   const [searchParams, setSearchParam] = useSearchParams();
   const [itemsList, setItemList] = useState([]);
+  const [show, setShow] = useState(false)
   useEffect(() => {
     searchFetch();
-  }, [debouncedValue,itemsList]);
+  }, [debouncedValue, itemsList]);
 
   const searchFetch = async () => {
     const endpoint = "https://www.swiggy.com/dapi/restaurants/search/suggest";
@@ -109,13 +111,20 @@ const Search = () => {
     console.log(response, "res");
 
     const { data } = await response.json();
-    console.log(data.cards[1].groupedCard.cardGroupMap.RESTAURANT.cards[1].card.card
-      .restaurants, "data");
+    console.log(
+      data.cards[1].groupedCard.cardGroupMap.RESTAURANT.cards[1].card.card
+        .restaurants,
+      "data"
+    );
     setItemList(
       data.cards[1].groupedCard.cardGroupMap.RESTAURANT.cards[1].card.card
         .restaurants
     );
   };
+  const handleOnSearch = (event) => {
+    setSearchQuery(event.target.value)
+    setShow(false)
+  }
 
   const handleItemClick = (item) => {
     console.log(item);
@@ -123,12 +132,13 @@ const Search = () => {
     const queryValue = searchParams.get("query");
     console.log(queryValue);
     queryFetch(queryValue);
+    setShow(true)
   };
   return (
     <div>
       <div className="flex justify-center mt-8">
         <input
-          onChange={(e) => setSearchQuery(e.target.value)}
+          onChange={(e) => handleOnSearch(e)}
           value={searchQuery}
           className="border-2 border-gray-500 w-6/12 p-2"
           type="text"
@@ -136,39 +146,44 @@ const Search = () => {
       </div>
       <div className="flex justify-center  pt-5">
         <div className="w-6/12">
-          {
-            itemsList.map((item, index) => {
-              console.log(item)
-              return (
-                <div key={index}>
+          {show == false ? (
+            <div>
+              {searchList &&
+                searchList.map((item, index) => {
+                  return (
+                    <div
+                      onClick={() => handleItemClick(item)}
+                      key={index}
+                      className="flex items-center hover:bg-slate-100 p-4"
+                    >
+                      <div className=" ">
+                        <img
+                          className="rounded-lg"
+                          src={imageUrl + item.cloudinaryId}
+                          alt=""
+                        />
+                      </div>
+                      <div className="ml-2">
+                        <h5 className="font-Grote font-medium">{item.text}</h5>
+                        <h6 className="font-normal">{item.subCategory}</h6>
+                      </div>
+                    </div>
+                  );
+                })}
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 bg-slate-100 pt-5 gap-3">
+              {itemsList.map((item, index) => {
+                console.log(item);
+                return (
                 
-                </div>
-               
-              )
-            })
-          }
-          {searchList &&
-            searchList.map((item, index) => {
-              return (
-                <div
-                  onClick={() => handleItemClick(item)}
-                  key={index}
-                  className="flex items-center hover:bg-slate-100 p-4"
-                >
-                  <div className=" ">
-                    <img
-                      className="rounded-lg"
-                      src={imageUrl + item.cloudinaryId}
-                      alt=""
-                    />
-                  </div>
-                  <div className="ml-2">
-                    <h5 className="font-Grote font-medium">{item.text}</h5>
-                    <h6 className="font-normal">{item.subCategory}</h6>
-                  </div>
-                </div>
-              );
-            })}
+                   <SearchItemList key={index} data={item} />
+                  
+                );
+              })}
+            </div>
+          )}
+
           <Outlet />
         </div>
       </div>
