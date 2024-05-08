@@ -3,6 +3,7 @@ import useDebounce from "../utils/useDebounce";
 import { Link, Outlet, useSearchParams } from "react-router-dom";
 import ItemList from "./ItemList";
 import { SearchItemList } from "./SearchItemList";
+
 const imageUrl =
   "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_112,h_112,c_fill/";
 const Search = () => {
@@ -11,7 +12,8 @@ const Search = () => {
   const debouncedValue = useDebounce(searchQuery, 1000);
   const [searchParams, setSearchParam] = useSearchParams();
   const [itemsList, setItemList] = useState([]);
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(false);
+
   useEffect(() => {
     searchFetch();
   }, [debouncedValue, itemsList]);
@@ -122,9 +124,9 @@ const Search = () => {
     );
   };
   const handleOnSearch = (event) => {
-    setSearchQuery(event.target.value)
-    setShow(false)
-  }
+    setSearchQuery(event.target.value);
+    setShow(false);
+  };
 
   const handleItemClick = (item) => {
     console.log(item);
@@ -132,7 +134,7 @@ const Search = () => {
     const queryValue = searchParams.get("query");
     console.log(queryValue);
     queryFetch(queryValue);
-    setShow(true)
+    setShow(true);
   };
   return (
     <div>
@@ -174,12 +176,7 @@ const Search = () => {
           ) : (
             <div className="grid grid-cols-2 bg-slate-100 pt-5 gap-3">
               {itemsList.map((item, index) => {
-                console.log(item);
-                return (
-                
-                   <SearchItemList key={index} data={item} />
-                  
-                );
+                return <SearchItemList key={index} data={item} />;
               })}
             </div>
           )}

@@ -7,8 +7,8 @@ export const SearchItemList = ({ data }) => {
 
   return (
     
-      <div className="flex pl-2 m-2 bg-white h-36 items-center rounded-lg">
-        <div>
+      <div className="  flex pl-2 m-2 bg-white h-36 items-center rounded-lg">
+        <div className="">
           <img className="w-20 h-24 object-cover rounded-lg" src={imagUrl + cloudinaryImageId} alt="" />
         </div>
 
